@@ -1,104 +1,169 @@
-/* CSS Variables for Theme Management */
+/* Ocean Themed Global Styles + Card and Modal Styling */
+
+/* Ocean palette root variables */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --surf-primary: #0077be;
+  --surf-secondary: #fceabb;
+  --surf-accent: #20b2aa;
+  --surf-sand: #ffe4b5;
+  --surf-bg1: #eafcff;
+  --surf-bg2: #fafdff;
+  --surf-deep: #003366;
+  --surf-white: #ffffff;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
-}
-
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+/* App container & Backdrop */
+body, .App {
+  background: linear-gradient(0deg, #c2e0fb 10%, #eafcff 60%, #fceabb 100%);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: system-ui, 'Segoe UI', Arial, 'Helvetica Neue', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Navbar styles */
+header {
+  box-shadow: 0 2px 12px 0 #0077be13;
+  border-bottom: 3px solid #20b2aa33;
+  background: linear-gradient(90deg,#55b7ff 0%,#20b2aa 85%,#fceabb 100%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
-}
-
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
-
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
+.nav-btn {
+  background: none;
+  color: var(--surf-primary);
   border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 20px;
   font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all .19s;
+}
+.nav-btn.active, .nav-btn:focus {
+  background: var(--surf-primary);
+  color: #fff;
+  outline: none;
+  box-shadow: 0 2px 6px #1aa7ae24;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.session-card {
+  transition: transform .12s, box-shadow 0.2s;
+}
+.session-card:active {
+  transform: translateY(2px) scale(0.99);
+  box-shadow: 0 1px 8px #55b7ff25;
+}
+.session-card:focus {
+  outline: 2.5px solid var(--surf-accent);
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+/* Modal overlay/animations */
+.modal-fade-in {
+  animation: surfModalFade 0.28s cubic-bezier(.08,.82,.18,1.0);
 }
-
-@keyframes App-logo-spin {
+@keyframes surfModalFade {
   from {
-    transform: rotate(0deg);
+    opacity: 0; transform: translateY(100px) scale(0.97);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1; transform: translateY(0) scale(1);
   }
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+/* Floating Action Button (FAB) */
+.fab-btn {
+  background: linear-gradient(90deg,#20b2aa,#0077be 85%,#fceabb 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 21px;
+  border-radius: 50px;
+  padding: 18px 29px;
+  box-shadow: 0 3px 16px #2196f330;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  right: 28px;
+  bottom: 38px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-shadow: 0 1px 5px #33666644;
+  transition: all 0.17s;
 }
+.fab-btn:active { background: var(--surf-accent); }
+
+/* Form & Card Styles */
+input, select, textarea {
+  border: 1.5px solid #0077be80;
+  border-radius: 11px;
+  padding: 8px 11px;
+  font-size: 15px;
+  color: var(--surf-primary);
+  background: #fff;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  width: 100%;
+}
+textarea { resize: vertical; min-height: 48px; }
+input[type=range] {
+  accent-color: var(--surf-primary);
+  margin-top: 2px;
+}
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--surf-accent);
+}
+
+::-webkit-input-placeholder { color: #8aa6be; opacity: 1;}
+::-moz-placeholder { color: #8aa6be; opacity: 1;}
+:-ms-input-placeholder { color: #8aa6be; opacity: 1;}
+::placeholder { color: #8aa6be; opacity: 1;}
+
+/* Responsive adjustments */
+@media (max-width: 650px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.7rem 0.5rem;
+  }
+  .fab-btn {
+    right: 10px;
+    bottom: 19px;
+    padding: 13px 16px;
+    font-size: 16px;
+  }
+  .session-card {
+    padding: 0.9rem 0.4rem;
+  }
+  main { padding: 0; }
+}
+
+/* Custom scrollbar for modal/notes */
+::-webkit-scrollbar-track { background: #e1f7ff; }
+::-webkit-scrollbar-thumb { background: #20b2aa66; border-radius: 12px; }
+::-webkit-scrollbar { height: 6px; width: 8px;}
+
+/* Card box shadows */
+.session-card, .modal-form, .modal-detail, .dashboard-card {
+  box-shadow: 0 4px 20px 0 #0077be15;
+}
+
+/* Filter bar styling */
+.filter-bar {
+  background: #eafcff;
+  border-radius: 22px;
+  box-shadow: 0 2px 12px #0077be0d;
+  padding: 0.6rem 0.7rem;
+}
+
+footer {
+  background: #0076be00;
+  color: #086a93;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+  padding: 12px 0 10px 0;
+  margin-top: 18px;
+  opacity: 0.88;
+}
+
+/* Remove display of logo.svg, old theme toggle */
+.App-logo, .theme-toggle, .App-header, .App-link { display: none !important;}
