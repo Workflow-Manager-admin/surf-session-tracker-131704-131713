@@ -1,0 +1,4 @@
+{
+    "command": "npm run test",
+    "working_directory": "/home/kavia/workspace/code-generation/surf-session-tracker-131704-131713/surf_sync_frontend"
+}
